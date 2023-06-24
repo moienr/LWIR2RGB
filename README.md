@@ -1,7 +1,6 @@
-# LWIR2RGB
 
 # Abstract:
-The aim of this research is to study the capability of adversarial-generative convolutional neural networks in translating hyperspectral LWIR images to their visible RGB counterparts. The IGARSS 2014 dataset, which includes hyperspectral and corresponding visible images, is utilized in this study. The significance of this research lies in the possibility of employing existing classifiers for visible spectra in other spectra as well. Moreover, it can be highly practical in interpreting such images.
+The aim of this research is to study the capability of adversarial-generative convolutional neural networks in translating **Hyperspectral LWIR** images to their **visible RGB counterparts**. The **IGARSS 2014 dataset**, which includes hyperspectral and corresponding visible images, is utilized in this study. The significance of this research lies in the possibility of employing existing classifiers for visible spectra in other spectra as well. Moreover, it can be highly practical in interpreting such images. And furthure more in can be a starting point to convert Night Thermal Images into RGB Images.
 
 Keywords: Convolutional neural networks, GAN, CGAN, Pix2Pix
 
@@ -10,7 +9,7 @@ Many problems in image processing can be considered as the "translation" of an i
 
 With the advancements in remote sensing systems and access to multi-sensor information, the research community strives to achieve better results in image classification by utilizing various sensors (Abdi et al., 2017). Images captured in new spectra provide complementary data about a scene, leading to advantages over images restricted to a specific band.
 
-In this article, we aim to translate LWIR (Long-Wave Infrared) images into RGB images using GAN (Generative Adversarial Network) networks. Considering the human eye's familiarity with the visible spectrum, such translation can greatly facilitate the interpretation of LWIR images for non-expert users (Reyes et al., 2019).
+In this poject, we aim to translate LWIR (Long-Wave Infrared) images into RGB images using GAN (Generative Adversarial Network) networks. Considering the human eye's familiarity with the visible spectrum, such translation can greatly facilitate the interpretation of LWIR images for non-expert users (Reyes et al., 2019).
 
 Additionally, LWIR hyperspectral data faces challenges such as low energy, low SNR (Signal-to-Noise Ratio), high inter-band correlation, and unclear boundaries, which can hinder classification. On the other hand, visible data provide details but suffer from limited spectral resolution, making it difficult to distinguish objects with homogeneous spectra.
 
@@ -18,51 +17,51 @@ A common misconception about GANs is how they generate information that does not
 
 For example, Wang and Patel (2018) employed GANs to translate SAR (Synthetic Aperture Radar) images into RGB and obtained good results.
 
-![](imgs/imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.001.png)
+![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.001.png)
 
-<a name="_hlk138537229"></a>*Figure 1Conversion of Radar to Color Image (Wang & Patel, 2018)*
+**Figure 1.** Conversion of Radar to Color Image (Wang & Patel, 2018)
 
 In general, the working principle of GANs (Generative Adversarial Networks) is as follows: they take an input, which can be random noise (Goodfellow et al., 2014) or a conditional value known as CGAN (Mirza & Osindero, 2014). This condition can also be an image (Isola et al., 2016).
 
 The generator network aims to transform this input into an output, such as a human face. On the other hand, the discriminator network's task is to determine whether the given image is real or generated (fake) by the generator network.
 
-![Figure 1 The diagram shows the generator and discriminator networks that comprise a GAN..](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.002.jpeg)
+![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.002.jpeg)
 
-*Figure 2. GAN Architecture*
+**Figure 2.** GAN Architecture
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.003.png)
 
-*Figure 3. Diffrence between GAN and cGAN*
+**Figure 3.** Diffrence between GAN and cGAN
 # Chapter 2: Background Concepts and Literature Review
 In the early stages, GANs were introduced in 2014 by Goodfellow et al. Shortly after, one of the authors of the original paper, Mirza and Osindero, introduced CGAN (Conditional GAN) by adding a conditioning input to the model.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.004.png)
 
-Figure 5: Generation of random numbers or random faces using GAN (Goodfellow et al., 2014).
+**Figure 5.** Generation of random numbers or random faces using GAN (Goodfellow et al., 2014).
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.005.png)
 
-Figure 6: Generation of images of digits 0 to 9 selected by the user using CGAN (Mirza & Osindero, 2014).
+**Figure 6.** Generation of images of digits 0 to 9 selected by the user using CGAN (Mirza & Osindero, 2014).
 
 However, a significant breakthrough in these networks came with the introduction of the pix2pix network by Isola et al. in 2016. The architecture of pix2pix was initially released on GitHub and later found numerous applications with the help of users, eventually leading to a formal research paper.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.006.png)
 
-Figure 7: Translation from mask to real image using pix2pix (Isola et al., 2016).
+**Figure 7.** Translation from mask to real image using pix2pix (Isola et al., 2016).
 
-![](imgs/imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.007.png)
+![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.007.png)
 
-Figure 8: Conversion from RGB image to Google Map representation.
+**Figure 8.** Conversion from RGB image to Google Map representation.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.008.png)
 
-Figure 9: Conversion from grayscale to color image.
+**Figure 9.** Conversion from grayscale to color image.
 
 In general, the pix2pix network consists of a generator, based on the UNET architecture, and a discriminator, which is a siamese classifier.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.009.png)
 
-Figure 10: Structure of pix2pix.
+**Figure 10** Structure of pix2pix.
 
 An image is fed into the generator (G), which produces a mask. The mask, along with the real image, is then inputted into the discriminator (D) to determine whether it is a real or fake image. If the discriminator makes a correct guess, the generator adjusts itself using binary cross-entropy loss. If it makes a mistake, the generator corrects itself.
 
@@ -70,13 +69,13 @@ Two papers (Reyes et al., 2019; Wang & Patel, 2018) utilized CGANs for transform
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.010.png)
 
-Figure 10: SAR2Optic.
+**Figure 9.** SAR2Optic.
 
 (Liu et al., 2018) employed CGANs for transforming thermal images to visible images.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.011.png)
 
-Figure 10: IR2VIS.
+**Figure 10.** IR2VIS.
 
 # 3- Data Augmentaion
 Data augmentation plays a crucial role in addressing the overfitting issue in convolutional neural networks (CNNs), which are prone to overfitting due to limited training data availability (Shorten & Khoshgoftaar, 2019).
@@ -88,7 +87,7 @@ Another approach is to create new images by combining linear and nonlinear trans
 Data augmentation helps in diversifying the training dataset, providing the neural network with more examples to learn from and reducing the risk of overfitting. By introducing variations in the training data, the network becomes more robust and better generalizes to unseen data.
 
 
-# Chapter 3: Work Method
+# Chapter 3: Methodology
 In this chapter, based on the knowledge obtained in the previous chapter, we preprocess our images and design our system model to see if we achieve satisfactory results or not.
 
 ## 1-3 Data Preparation
@@ -97,8 +96,10 @@ The used data consists of a visible RGB image with a pixel size of 0.2 meters an
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.012.png)
 
-Figure 16: LWIR Image Bands in ENVI
+**Figure 16.** LWIR Image Bands in ENVI
 
+### Dimention Reduction - PCA
+---
 To reduce dimensions, we employed two algorithms, PCA and ICA, ultimately using PCA from the first to the seventh band.
 
 It should be noted that to make our solution more comprehensive, it would have been better to use band averaging and band selection instead.
@@ -107,21 +108,25 @@ We also downsampled the visible data to 1 meter by 1 meter to match the size of 
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.013.png)
 
-Figure 17: PC1-PC7
+**Figure 17.** PC1-PC7
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.014.png)
+
+**Figure 17.** RGB Data GAP
 
 In the next step, in order to have consistent images for training the network and considering the presence of gaps between visible flight lines, we needed to mask the LWIR image. For this purpose, a mask was created from the RGB image, where the mask was 0 wherever all pixel values of the three bands were 0, and 1 otherwise. Then, the mask was applied to the LWIR image.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.015.png)
+
+**Figure 17.** Masked LWIR data with RGB mask
 ### 3-1-3 Image Patching
 In the next stage, we divided the images into patches of size (64, 64, 7) and (64, 64, 3) with an overlap of 8 pixels using the patchify library. Since the original image size was 751 by 874 pixels, we obtained approximately 200 images.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.016.png)
 
-Figure 18: Images after Patching
+**Figure 18.** Images after Patching
 
-3-1-3 Data Augmentation
+### 3-1-4 Data Augmentation
 
 As mentioned in Chapter 2, we use rotation, flip, and linear mixing methods to generate new images. However, to ensure that we only augment data with actual content, we exclude images and their corresponding masks where the percentage of mask pixels with a value of 1 is less than 5%, as this threshold was determined empirically.
 
@@ -131,8 +136,7 @@ Afterwards, we create 500 augmented images.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.018.png)
 
-Figure 19: Example of Augmented Image
-
+**Figure 19.** Example of Augmented Image
 
 
 ### 2-3 Network Architecture
@@ -142,11 +146,11 @@ The overall architecture is as follows:
 
 ![](imgs/Aspose.Words.2cd0945b-7e43-4176-b018-0641a2ecd173.001.png)
 
-Figure 21: Network Architecture
+**Figure 21:** Network Architecture
 ## Chapter 4: Results
 In this chapter, we examine the results of our work.
 ### 4-1-1 Error Rate:
-Overall, there is still no specific criterion for the accuracy and correctness of GANs because, for example, if it generates a house with a blue roof while the actual roof is green, but our goal is to find houses, it can be considered correct.
+Overall, there is still no specific criterion for the accuracy and correctness of GANs because, for example, if it generates a house with a blue roof while the actual roof is green, but our goal is to find houses, it can be considered correct. **NOTE: We could use a sementic segmentain model on the output and use the precptive loss.**
 
 However, in general, Binary Cross Entropy for D and Mean Absolute Error for G are relatively suitable metrics. In the results, we observe a good progress until epoch 65, but visually, the best generation is seen at epoch 35.
 
@@ -166,9 +170,7 @@ Figure 23: Testing at epoch 15
 
 Figure 24: Training at epoch 15
 
-(a)
 
-(b)
 
 ![](imgs/Aspose.Words.2cd0945b-7e43-4176-b018-0641a2ecd173.005.png)
 
@@ -178,14 +180,16 @@ Figure 25: (a): Training | (b): Testing after 25 epochs
 
 Figure 25: (a): Training | (b): Testing after 25 epochs
 
-## 1-5. Conclusion:
+## 5-1. Conclusion:
 Considering the very limited training data, the results are truly promising and give hope that with more images, a nearly flawless model can be achieved. The network has successfully understood the roads and has become familiar with the concept of houses, but it is evident that the lack of training data has confused the colors. The distinction between trees and grass has been challenging, but overall, it has performed well in plant detection. RGB classifiers can also be used on this data.
 
 In this study, we have demonstrated that although the training data was limited compared to other research, by utilizing appropriate augmentation methods, we can prevent overfitting.
-##
-## 2-5. Future work:
+
+## 5-2. Future work:
 During my research, I came across several aerial campaigns by NASA and the European Space Agency. Unfortunately, I didn't have the opportunity to investigate them thoroughly. If we can obtain corresponding thermal and RGB data for large-scale areas with high resolution, we can definitely achieve a robust model.
 
+
+# Refrences
 
 Abdi, G., Samadzadegan, F., & Reinartz, P. (2017). A decision-based multi-sensor classification system using thermal hyperspectral and visible data in urban area. *European Journal of Remote Sensing*, *50*(1), 414–427. https://doi.org/10.1080/22797254.2017.1348914
 
