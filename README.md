@@ -1,10 +1,29 @@
+# HyperSpectral LWIR to Visible RGB GAN
+**Class of Thermal Remote Sensing**
 
-# Abstract:
+Dr. Majid Kiavarz kiavarzmajid@ut.ac.ir
+
+2021-2022 2nd Semester
+
+
+BY: Moien Rangzan
+
+
+## Abstract:
 The aim of this research is to study the capability of adversarial-generative convolutional neural networks in translating **Hyperspectral LWIR** images to their **visible RGB counterparts**. The **IGARSS 2014 dataset**, which includes hyperspectral and corresponding visible images, is utilized in this study. The significance of this research lies in the possibility of employing existing classifiers for visible spectra in other spectra as well. Moreover, it can be highly practical in interpreting such images. And furthure more in can be a starting point to convert Night Thermal Images into RGB Images.
 
 Keywords: Convolutional neural networks, GAN, CGAN, Pix2Pix
 
-# Introduction:
+### Acknowledgement
+The data used in this work is from [2014 IEEE GRSS Data Fusion Contest](http://www.classic.grss-ieee.org/community/technical-committees/data-fusion/2014-ieee-grss-data-fusion-contest/)
+
+The owner of the data and of the copyright on the data is [Telops Inc.](https://www.telops.com/) (Québec, Canada).
+
+
+2014 IEEE GRSS Data Fusion Contest. Online: http://www.grss-ieee.org/community/technical-committees/data-fusion/
+
+
+## Introduction:
 Many problems in image processing can be considered as the "translation" of an input image into an equivalent output image, similar to how a text can be expressed in either Persian or English. A scene can be represented with an RGB or infrared image, even though each may possess information that the other lacks, but their origin remains the same (Zhu et al., 2017).
 
 With the advancements in remote sensing systems and access to multi-sensor information, the research community strives to achieve better results in image classification by utilizing various sensors (Abdi et al., 2017). Images captured in new spectra provide complementary data about a scene, leading to advantages over images restricted to a specific band.
@@ -32,7 +51,7 @@ The generator network aims to transform this input into an output, such as a hum
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.003.png)
 
 **Figure 3.** Diffrence between GAN and cGAN
-# Chapter 2: Background Concepts and Literature Review
+## Chapter 2: Background Concepts and Literature Review
 In the early stages, GANs were introduced in 2014 by Goodfellow et al. Shortly after, one of the authors of the original paper, Mirza and Osindero, introduced CGAN (Conditional GAN) by adding a conditioning input to the model.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.004.png)
@@ -77,7 +96,7 @@ Two papers (Reyes et al., 2019; Wang & Patel, 2018) utilized CGANs for transform
 
 **Figure 10.** IR2VIS.
 
-# 3- Data Augmentaion
+## 3- Data Augmentaion
 Data augmentation plays a crucial role in addressing the overfitting issue in convolutional neural networks (CNNs), which are prone to overfitting due to limited training data availability (Shorten & Khoshgoftaar, 2019).
 
 Data augmentation is a technique used to generate new training data by applying various image transformations to the existing dataset. Some of the simplest augmentation methods include rotation, flipping, and contrast adjustment.
@@ -87,18 +106,18 @@ Another approach is to create new images by combining linear and nonlinear trans
 Data augmentation helps in diversifying the training dataset, providing the neural network with more examples to learn from and reducing the risk of overfitting. By introducing variations in the training data, the network becomes more robust and better generalizes to unseen data.
 
 
-# Chapter 3: Methodology
+## Chapter 3: Methodology
 In this chapter, based on the knowledge obtained in the previous chapter, we preprocess our images and design our system model to see if we achieve satisfactory results or not.
 
-## 1-3 Data Preparation
-### 1-1-3 Used Data
+### 1-3 Data Preparation
+#### 1-1-3 Used Data
 The used data consists of a visible RGB image with a pixel size of 0.2 meters and a hyperspectral LWIR image with a spatial resolution of 1 meter, which has 84 bands from 7.8 micrometers to 11.5 micrometers (The 2014 IEEE GRSS Data Fusion Contest, n.d.).
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.012.png)
 
 **Figure 16.** LWIR Image Bands in ENVI
 
-### Dimention Reduction - PCA
+#### Dimention Reduction - PCA
 ---
 To reduce dimensions, we employed two algorithms, PCA and ICA, ultimately using PCA from the first to the seventh band.
 
@@ -119,14 +138,14 @@ In the next step, in order to have consistent images for training the network an
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.015.png)
 
 **Figure 17.** Masked LWIR data with RGB mask
-### 3-1-3 Image Patching
+#### 3-1-3 Image Patching
 In the next stage, we divided the images into patches of size (64, 64, 7) and (64, 64, 3) with an overlap of 8 pixels using the patchify library. Since the original image size was 751 by 874 pixels, we obtained approximately 200 images.
 
 ![](imgs/Aspose.Words.8bf78c53-26da-4ea0-aa17-658b80130310.016.png)
 
 **Figure 18.** Images after Patching
 
-### 3-1-4 Data Augmentation
+#### 3-1-4 Data Augmentation
 
 As mentioned in Chapter 2, we use rotation, flip, and linear mixing methods to generate new images. However, to ensure that we only augment data with actual content, we exclude images and their corresponding masks where the percentage of mask pixels with a value of 1 is less than 5%, as this threshold was determined empirically.
 
@@ -139,7 +158,7 @@ Afterwards, we create 500 augmented images.
 **Figure 19.** Example of Augmented Image
 
 
-### 2-3 Network Architecture
+#### 2-3 Network Architecture
 In the main architecture, images with a size of 256x256 were initially used, and in both the G and D networks, the images were downsampled 5 times with a stride of 2. Since our images are 64 by 64, we had to adjust the network accordingly by removing the last 2 layers of G and D. Additionally, unlike the original model where both input and output are 3-band images, our input image has 7 bands and the output has 3 bands, which should be considered in the concatenation steps.
 
 The overall architecture is as follows:
@@ -147,15 +166,15 @@ The overall architecture is as follows:
 ![](imgs/Aspose.Words.2cd0945b-7e43-4176-b018-0641a2ecd173.001.png)
 
 **Figure 21:** Network Architecture
-## Chapter 4: Results
+### Chapter 4: Results
 In this chapter, we examine the results of our work.
-### 4-1-1 Error Rate:
+#### 4-1-1 Error Rate:
 Overall, there is still no specific criterion for the accuracy and correctness of GANs because, for example, if it generates a house with a blue roof while the actual roof is green, but our goal is to find houses, it can be considered correct. **NOTE: We could use a sementic segmentain model on the output and use the precptive loss.**
 
 However, in general, Binary Cross Entropy for D and Mean Absolute Error for G are relatively suitable metrics. In the results, we observe a good progress until epoch 65, but visually, the best generation is seen at epoch 35.
 
 ![](imgs/Aspose.Words.2cd0945b-7e43-4176-b018-0641a2ecd173.002.png)
-### 4-1-1 Final Results:
+#### 4-1-1 Final Results:
 The final results indicate that the network can fit well to the training data but does not perform well during testing, and the reason is clear: insufficient training data!
 
 The minimum training data I have observed is 1000 images of size 256 by 256. If we wanted to bring our data to this size, we would need a total of 8 to 10 tiles!
