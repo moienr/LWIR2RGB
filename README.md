@@ -22,6 +22,8 @@ The owner of the data and of the copyright on the data is [Telops Inc.](https://
 
 2014 IEEE GRSS Data Fusion Contest. Online: http://www.grss-ieee.org/community/technical-committees/data-fusion/
 
+The Data Was used only in the class poject to test the possibily of this translataion.
+
 
 ## Introduction:
 Many problems in image processing can be considered as the "translation" of an input image into an equivalent output image, similar to how a text can be expressed in either Persian or English. A scene can be represented with an RGB or infrared image, even though each may possess information that the other lacks, but their origin remains the same (Zhu et al., 2017).
