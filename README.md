@@ -1,4 +1,5 @@
-﻿
+# LWIR2RGB
+
 # Abstract:
 The aim of this research is to study the capability of adversarial-generative convolutional neural networks in translating hyperspectral LWIR images to their visible RGB counterparts. The IGARSS 2014 dataset, which includes hyperspectral and corresponding visible images, is utilized in this study. The significance of this research lies in the possibility of employing existing classifiers for visible spectra in other spectra as well. Moreover, it can be highly practical in interpreting such images.
 
